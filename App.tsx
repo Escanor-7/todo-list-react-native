@@ -1,9 +1,7 @@
-import { Text, View } from 'react-native';
+import { Home } from './src/screens/Home';
 
 export default function App() {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }} >
-      <Text>ToDo List challenge</Text>
-    </View>
+    <Home />
   );
 }
