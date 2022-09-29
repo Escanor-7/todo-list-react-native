@@ -3,6 +3,7 @@ import { styles } from './styles';
 import { Input } from '../../components/Input';
 import { CreateButton } from '../../components/CreateButton';
 import { DeleteButton } from '../../components/DeleteButton';
+import { Checkbox } from '../../components/Checkbox';
 
 export function Home() {
 
@@ -11,6 +12,9 @@ export function Home() {
       <Input />
       <CreateButton />
       <DeleteButton />
+      <Checkbox
+        text='Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer.'
+      />
     </View>
   )
 }
