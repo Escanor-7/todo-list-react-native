@@ -1,22 +1,24 @@
 import { TouchableOpacity } from "react-native";
 import { styles } from './styles';
-import { plusIcon } from '../../assets/svg/index';
+import { deleteIcon } from '../../assets/svg/index';
 import { SvgXml } from 'react-native-svg';
 import { useState } from "react";
 
-export function CreateButton() {
+export function DeleteButton() {
   const [focusStyle, setFocusStyle] = useState(false);
 
   return (
     <>
       <TouchableOpacity
         style={[styles.button,
-        focusStyle ? { backgroundColor: '#4EA8DE' } : { backgroundColor: '#1E6F9F' }
+        focusStyle && { backgroundColor: '#333333' }
         ]}
         onPress={() => setFocusStyle(!focusStyle)}
         onBlur={() => setFocusStyle(false)}
       >
-        <SvgXml xml={plusIcon} height={16} />
+        <SvgXml xml={deleteIcon} height={16}
+          stroke={focusStyle ? '#E25858' : '#808080'}
+        />
       </TouchableOpacity>
     </>
   )

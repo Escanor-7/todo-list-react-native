@@ -1,5 +1,7 @@
-import { plusButton } from './plus-button';
+import { plusIcon } from './plus-icon';
+import { deleteIcon } from './delete-icon';
 
 export {
-  plusButton as PlusButton,
+  plusIcon as plusIcon,
+  deleteIcon as deleteIcon,
 }

@@ -2,6 +2,7 @@ import { View, Text } from 'react-native';
 import { styles } from './styles';
 import { Input } from '../../components/Input';
 import { CreateButton } from '../../components/CreateButton';
+import { DeleteButton } from '../../components/DeleteButton';
 
 export function Home() {
 
@@ -9,6 +10,7 @@ export function Home() {
     <View style={styles.container} >
       <Input />
       <CreateButton />
+      <DeleteButton />
     </View>
   )
 }
