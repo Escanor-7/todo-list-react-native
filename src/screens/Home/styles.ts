@@ -23,4 +23,39 @@ export const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 24,
   },
+  taskInfoRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingTop: 50,
+  },
+  taskInfoContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  infoText: {
+    marginRight: 10,
+    fontWeight: '700',
+  },
+  quantityText: {
+    width: 25,
+    backgroundColor: '#333333',
+    textAlign: 'center',
+    borderRadius: 10,
+    color: '#D9D9D9',
+    fontSize: 12,
+    fontWeight: '700',
+  },
+  horizontalBar: {
+    borderWidth: 1,
+    borderColor: '#333333',
+    marginTop: 20
+  },
+  taskContainer: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  statusText: {
+    color: '#333333',
+    fontSize: 14,
+  }
 }) 
