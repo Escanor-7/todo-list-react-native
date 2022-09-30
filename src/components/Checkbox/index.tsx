@@ -10,10 +10,15 @@ export function Checkbox({ text }: CheckboxProps) {
 
   return (
     <BouncyCheckbox
+      text={text}
+      textContainerStyle={{
+        flex: 1,
+        marginLeft: 8,
+      }}
+      style={{ flex: 1 }}
       size={24}
       fillColor={focusStyle ? 'transparent' : '#4EA8DE'}
       iconStyle={focusStyle ? { backgroundColor: '#5E60CE' } : { backgroundColor: 'transparent' }}
-      text={text}
       textStyle={{
         fontSize: 14,
         color: '#F2F2F2',

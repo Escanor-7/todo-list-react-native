@@ -1,9 +1,8 @@
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import { styles } from './styles';
 import { Input } from '../../components/Input';
 import { CreateButton } from '../../components/CreateButton';
-import { DeleteButton } from '../../components/DeleteButton';
-import { Checkbox } from '../../components/Checkbox';
+import { Task } from '../../components/Task';
 
 export function Home() {
 
@@ -11,10 +10,7 @@ export function Home() {
     <View style={styles.container} >
       <Input />
       <CreateButton />
-      <DeleteButton />
-      <Checkbox
-        text='Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer.'
-      />
+      <Task />
     </View>
   )
 }
