@@ -9,5 +9,6 @@ export const styles = StyleSheet.create({
     padding: 12,
     alignItems: 'center',
     justifyContent: 'space-evenly',
+    marginTop: 50
   }
 })
