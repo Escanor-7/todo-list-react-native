@@ -2,7 +2,12 @@ import { useState } from 'react';
 import { TextInput } from "react-native";
 import { styles } from "./styles";
 
-export function Input() {
+type InputProps = {
+  value: string;
+  onChange: (text: string) => void;
+}
+
+export function Input({ value, onChange }: InputProps) {
   const [focusStyle, setFocusStyle] = useState(false);
 
   return (
@@ -12,6 +17,8 @@ export function Input() {
       placeholderTextColor='#808080'
       onFocus={() => setFocusStyle(true)}
       onBlur={() => setFocusStyle(false)}
+      value={value}
+      onChangeText={onChange}
     />
   )
 }

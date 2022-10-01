@@ -4,7 +4,11 @@ import { plusIcon } from '../../assets/svg/index';
 import { SvgXml } from 'react-native-svg';
 import { useState } from "react";
 
-export function CreateButton() {
+type CreateButtonProps = {
+  onClick: () => void;
+}
+
+export function CreateButton({ onClick }: CreateButtonProps) {
   const [focusStyle, setFocusStyle] = useState(false);
 
   return (
@@ -13,7 +17,9 @@ export function CreateButton() {
         style={[styles.button,
         focusStyle ? { backgroundColor: '#4EA8DE' } : { backgroundColor: '#1E6F9F' }
         ]}
-        onPress={() => setFocusStyle(!focusStyle)}
+        onPress={onClick}
+        onFocus={() => { setFocusStyle(!focusStyle) }}
+        // onPress={() => { setFocusStyle(!focusStyle); onClick }}
         onBlur={() => setFocusStyle(false)}
       >
         <SvgXml xml={plusIcon} height={16} />

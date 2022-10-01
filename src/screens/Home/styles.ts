@@ -27,6 +27,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingTop: 50,
+    marginBottom: 20
   },
   taskInfoContainer: {
     flexDirection: 'row',
