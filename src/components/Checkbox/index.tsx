@@ -3,11 +3,12 @@ import BouncyCheckbox from 'react-native-bouncy-checkbox';
 
 type CheckboxProps = {
   text: string;
+  isChecked?: boolean;
+  onClick?: () => void;
+  focusStyle: boolean;
 }
 
-export function Checkbox({ text }: CheckboxProps) {
-  const [focusStyle, setFocusStyle] = useState(false);
-
+export function Checkbox({ text, onClick, focusStyle }: CheckboxProps) {
   return (
     <BouncyCheckbox
       text={text}
@@ -23,7 +24,7 @@ export function Checkbox({ text }: CheckboxProps) {
         fontSize: 14,
         color: '#F2F2F2',
       }}
-      onPress={() => setFocusStyle(!focusStyle)}
+      onPress={onClick}
     />
   )
 }

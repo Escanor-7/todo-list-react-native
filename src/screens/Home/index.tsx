@@ -10,6 +10,8 @@ import { SvgXml } from 'react-native-svg';
 export function Home() {
   const [tasks, setTasks] = useState<string[]>([])
   const [taskDescription, setTaskDescription] = useState('');
+  const [focusStyle, setFocusStyle] = useState(false);
+  const [completedTasks, setCompletedTasks] = useState<string[]>([]);
 
   const handleTaskCreation = () => {
     if (taskDescription === '') {
@@ -19,6 +21,16 @@ export function Home() {
     }
     setTasks((prevState) => [...prevState, taskDescription]);
     setTaskDescription('');
+  }
+
+  const handleCompletedTask = (item: string) => {
+    const taskComplete = completedTasks.find(completedTask => completedTask === item);
+
+    if (taskComplete) {
+      setCompletedTasks(() => completedTasks.filter(task => task !== item))
+    } else {
+      setCompletedTasks(prevState => [...prevState, item])
+    }
   }
 
   return (
@@ -45,13 +57,13 @@ export function Home() {
             <Text style={[styles.infoText, { color: '#4EA8DE' }]} >
               Criadas
             </Text>
-            <Text style={styles.quantityText} >0</Text>
+            <Text style={styles.quantityText} >{tasks.length}</Text>
           </View>
           <View style={styles.taskInfoContainer} >
             <Text style={[styles.infoText, { color: '#5E60CE' }]} >
               Concluídas
             </Text>
-            <Text style={styles.quantityText} >0</Text>
+            <Text style={styles.quantityText} >{completedTasks.length}</Text>
           </View>
         </View>
         <View style={styles.taskContainer} >
@@ -69,9 +81,12 @@ export function Home() {
           <FlatList
             data={tasks}
             renderItem={(task) => {
+              const { item } = task;
               return (
                 <Task
-                  task={task.item}
+                  task={item}
+                  focusStyle={focusStyle}
+                  onClick={() => handleCompletedTask(item)}
                 />
               )
             }}
