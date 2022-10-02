@@ -5,19 +5,20 @@ import { styles } from "./styles";
 
 type TaskProps = {
   task: string;
-  onClick?: () => void;
-  focusStyle: boolean;
+  handleCompletedTask?: () => void;
+  handlerTaskRemoval?: () => void;
+  isChecked: boolean;
 }
 
-export function Task({ task, onClick, focusStyle }: TaskProps) {
+export function Task({ task, handleCompletedTask, handlerTaskRemoval, isChecked }: TaskProps) {
   return (
     <View style={styles.container}>
       <Checkbox
         text={task}
-        onClick={onClick}
-        focusStyle={focusStyle}
+        onClick={handleCompletedTask}
+        isChecked={isChecked}
       />
-      <DeleteButton />
+      <DeleteButton onClick={handlerTaskRemoval} />
     </View>
   )
 }

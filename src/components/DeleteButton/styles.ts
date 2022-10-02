@@ -7,6 +7,6 @@ export const styles = StyleSheet.create({
     borderRadius: 5,
     justifyContent: 'center',
     alignItems: 'center',
-    marginLeft: 10
+    marginLeft: 10,
   },
 })

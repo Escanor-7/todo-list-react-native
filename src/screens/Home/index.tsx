@@ -7,30 +7,68 @@ import { Task } from '../../components/Task';
 import { logRocket, clipboard } from '../../assets/svg';
 import { SvgXml } from 'react-native-svg';
 
+type TaskProps = {
+  id: number;
+  name: string;
+  checked: boolean;
+}
+
 export function Home() {
-  const [tasks, setTasks] = useState<string[]>([])
+  const [tasks, setTasks] = useState<TaskProps[]>([]);
   const [taskDescription, setTaskDescription] = useState('');
-  const [focusStyle, setFocusStyle] = useState(false);
-  const [completedTasks, setCompletedTasks] = useState<string[]>([]);
 
   const handleTaskCreation = () => {
+    const existingTask = tasks.find(task => task.name === taskDescription);
+    const newTask = {
+      id: Math.random(),
+      name: taskDescription,
+      checked: false
+    }
     if (taskDescription === '') {
-      return Alert.alert('Campo vazio', 'Por favor, digite o nome da tarefa.')
-    } else if (tasks.includes(taskDescription)) {
+      return Alert.alert('Erro', 'Por favor, digite o nome da tarefa.')
+    } else if (existingTask) {
       return Alert.alert('Tarefa já existe', 'Por favor, digite uma nova tarefa.')
     }
-    setTasks((prevState) => [...prevState, taskDescription]);
+    setTasks((prevState) => [...prevState, newTask]);
     setTaskDescription('');
   }
 
-  const handleCompletedTask = (item: string) => {
-    const taskComplete = completedTasks.find(completedTask => completedTask === item);
 
-    if (taskComplete) {
-      setCompletedTasks(() => completedTasks.filter(task => task !== item))
-    } else {
-      setCompletedTasks(prevState => [...prevState, item])
-    }
+  const handleCompletedTask = (id: number) => {
+    const taskUpdate = tasks.map(task => {
+      if (task.id === id && !task.checked) {
+        return { ...task, checked: true }
+      } else if (task.id === id && task.checked) {
+        return { ...task, checked: false }
+      }
+      return task;
+    });
+    setTasks(taskUpdate);
+  }
+
+  const handlerTaskRemoval = (identifier: number) => {
+    Alert.alert(
+      'Remoção de tarefa',
+      'Deseja remover a tarefa ?',
+      [
+        {
+          text: 'Não',
+        },
+        {
+          text: 'Sim',
+          onPress: () => setTasks(() => tasks.filter(task => task.id !== identifier))
+        },
+      ],
+    )
+  }
+
+  const handleNumberOfCompletedTasks = () => {
+    return tasks.reduce((accumulator, item): number => {
+      if (item.checked) {
+        accumulator++;
+      }
+      return accumulator;
+    }, 0)
   }
 
   return (
@@ -63,7 +101,9 @@ export function Home() {
             <Text style={[styles.infoText, { color: '#5E60CE' }]} >
               Concluídas
             </Text>
-            <Text style={styles.quantityText} >{completedTasks.length}</Text>
+            <Text style={styles.quantityText} >
+              {handleNumberOfCompletedTasks()}
+            </Text>
           </View>
         </View>
         <View style={styles.taskContainer} >
@@ -84,9 +124,10 @@ export function Home() {
               const { item } = task;
               return (
                 <Task
-                  task={item}
-                  focusStyle={focusStyle}
-                  onClick={() => handleCompletedTask(item)}
+                  task={item.name}
+                  handleCompletedTask={() => handleCompletedTask(item.id)}
+                  handlerTaskRemoval={() => handlerTaskRemoval(item.id)}
+                  isChecked={task.item.checked}
                 />
               )
             }}
